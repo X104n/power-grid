@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -177,8 +178,8 @@ public class Graph<V> implements IGraph<V> {
 		} catch (IllegalArgumentException e) {
 			return false;
 		}
-		
-		for(V b : neighbours(a)) {
+		Iterable<V> neighboursCopy = new HashSet<V>((Collection<? extends V>) neighbours(a));
+		for(V b : neighboursCopy) {
 			removeEdge(a,b);
 		}
 		vertices.remove(a);
