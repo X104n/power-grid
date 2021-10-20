@@ -29,7 +29,7 @@ public class WeightedGraph<V, E extends Comparable<E>> extends Graph<V> implemen
 	 * Gets the edge weight between a pair of vertices
 	 */
 	public E getWeight(V a, V b) {
-		return getWeight(new Edge<V>(a,b));
+		return getWeight(new Edge<V>(a, b));
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class WeightedGraph<V, E extends Comparable<E>> extends Graph<V> implemen
 	public void setWeight(V a, V b, E weight) {
 		if(!adjacent(a, b))
 			throw new IllegalArgumentException("These edges are not adjacent.");
-		edgeWeight.put(new Edge<V>(a,b), weight);
+		edgeWeight.put(new Edge<V>(a, b), weight);
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class WeightedGraph<V, E extends Comparable<E>> extends Graph<V> implemen
 
 	@Override
 	public boolean removeEdge(V a, V b) {
-		return removeEdge(new Edge<V>(a,b));
+		return removeEdge(new Edge<V>(a, b));
 	}
 	
 	@Override
@@ -97,7 +97,7 @@ public class WeightedGraph<V, E extends Comparable<E>> extends Graph<V> implemen
 		for(V v : vertices())
 			g.addVertex(v);
 		for(Edge<V> e : edges())
-			g.addEdge(e.a,e.b,getWeight(e));
+			g.addEdge(e.a, e.b, getWeight(e));
 		return g;
 	}
 }

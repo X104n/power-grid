@@ -4,6 +4,11 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Unit tests for Codegrade autograder.
+ * @author Sondre Bolland
+ *
+ */
 public class CorrectREPTest {
 
 	private ProblemSolverREPTest tests = new ProblemSolverREPTest();

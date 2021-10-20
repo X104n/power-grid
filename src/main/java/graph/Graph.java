@@ -206,7 +206,7 @@ public class Graph<V> implements IGraph<V> {
 	}
 
 	public boolean removeEdge(Edge<V> e) {
-		return removeEdge(e.a,e.b);
+		return removeEdge(e.a, e.b);
 	}
 	
 	/**
