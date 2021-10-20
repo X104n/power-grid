@@ -21,7 +21,7 @@ Given two nodes ``u`` and ``v`` find a node to conduct the outage search from. T
 **Implement ``IProblem::lca``.**
 
 ### Task 3
-After many complaints the power company has realised that the cheapest solution is not always the best. In a new attempt to solve the problem they will be adding an extra cable (an extra edge) to the network (graph). The goal is to have an outage impact the least amount of houses. Looking at statistics for outages they have found that most errors comes from faults in the cables. One faulty cable can cause a large number of houses to lose power. You are to find a pair of nodes which by adding a cable between them will minimize the number of houses affected if another cable fails. 
+After many complaints the power company has realised that the cheapest solution is not always the best. In a new attempt to solve the problem they will be adding an extra cable (an extra edge) to the network (graph). The goal is to have an outage impact the least amount of houses. One faulty cable can cause a large number of houses to lose power. You are to find a pair of nodes which by adding a cable between them will minimize the number of houses affected if another cable fails. 
 
 In this task it is possible to write an algorithm which runs in *O(n<sup>4</sup>)*, but to get full score on this task your solution must have a much better runtime.
 
