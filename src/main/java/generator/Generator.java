@@ -50,7 +50,7 @@ public class Generator {
 	public Graph<Integer> generateTree(int n){
 		Graph<Integer> g = new Graph<Integer>();
 		
-		/*// SHUFFLE VERTICES
+		// SHUFFLE VERTICES
 		int[] ids = new int[n];
 		for (int i = 0; i < n; i++) ids[i] = i;
 		for (int i = 1; i < n; i++) {
@@ -58,7 +58,7 @@ public class Generator {
 			ids[i] ^= ids[j];
 			ids[j] ^= ids[i];
 			ids[i] ^= ids[j];
-		}*/
+		}
 		
 		for (int u = 0; u < n; u++) g.addVertex(u);
 		for (int i = 1; i < n; i++) {
