@@ -11,17 +11,17 @@ The power company has gathered information on all the houses which needs to be c
 
 This problem in literature is known as *Minimum Spanning Tree*, see chapter 4.3 in *Algorithms*.
 
-**Implement ``IProblem::mst``.**
+**Implement ``IProblem::mst``.** By passing ``ProblemSolverMSTTest`` you will get full points for functionality. To get full points for the task your solution also has to be efficient.
 
 ### Task 2
-After the power grid has been built the power company has recieved a number of inquiries about power outages. Modern power grids often have an automatic alert system telling us where in the network the cause of the outage is located, but our power grid does not have such a system. Often times when a power outage occurs several houses loose power at the same time. A power outage can be seen as an edge of the network being removed. The nodes that are still part of the connected component with the power plant are recieving electricity, while all other nodes are not recieving electricity. To find the source of the outage as fast as possible we need to find the the node of the network which is most likely to have been part of the fault in the power grid, and start the error search from there. When two messages, from two seperate houses, about the outage has been recieved it is safe to assume that it comes from the same error in the network. Hence, the error must be in a cable that connected both these houses to the power plant. 
+After the power grid has been built the power company has recieved a number of inquiries about power outages. Modern power grids often have an automatic alert system telling us where in the network the cause of the outage is located, but our power grid does not have such a system. Often times when a power outage occurs several houses loose power at the same time. A power outage can be seen as an edge of the network being removed. The nodes that are still part of the connected component with the power plant are recieving electricity, while all other nodes are not recieving electricity. To find the source of the outage as fast as possible we need to find the node of the network next to the cable which is most likely to have been the cause of the fault in the power grid, and start the error search from there. When two messages, from two seperate houses, about the outage has been recieved it is safe to assume that it comes from the same error in the network. Hence, the error must be in a cable that connected both these houses to the power plant. 
 
 Given two nodes ``u`` and ``v`` find a node to conduct the outage search from. The error must have occurred in a cable which connects both nodes to the same connected component as the power plant. This problem in the litterature is called *Lowest Common Ancestor* (LCA). The optimal datastructure for LCA (which you can find by googling) is not part of the INF102 curriculum. You are not required to implement the optimal algorithm, but rather you are to implement a simple algorithm. It is possible to find a solution which runs in *O(n)*.
 
-**Implement ``IProblem::lca``.**
+**Implement ``IProblem::lca``.** By passing ``ProblemSolverLCATest`` you will get full points for functionality. To get full points for the task your solution also has to be efficient.
 
 ### Task 3
-After many complaints the power company has realised that the cheapest solution is not always the best. In a new attempt to solve the problem they will be adding an extra cable (an extra edge) to the network (graph). The goal is to have an outage impact the least amount of houses. Looking at statistics for outages they have found that most errors comes from faults in the cables. One faulty cable can cause a large number of houses to lose power. You are to find a pair of nodes which by adding a cable between them will minimize the number of houses affected if another cable fails. 
+After many complaints the power company has realised that the cheapest solution is not always the best. In a new attempt to solve the problem they will be adding an extra cable (an extra edge) to the network (graph). The goal is to have an outage impact the least amount of houses. One faulty cable can cause a large number of houses to lose power. You are to find a pair of nodes which by adding a cable between them will minimize the number of houses affected if another cable fails. 
 
 In this task it is possible to write an algorithm which runs in *O(n<sup>4</sup>)*, but to get full score on this task your solution must have a much better runtime.
 
@@ -29,7 +29,7 @@ In this task it is possible to write an algorithm which runs in *O(n<sup>4</sup>
 
 In the example above if the edge between the **power plant** and node **f** fails then 6 nodes will lose access to electricity. If we add an edge between **e** and **j** this problem will be averted as all nodes will still be in the same connected component as the **power plant**. Then the largest power outage that can occur (removal of one edge) is 2 (the edge between **f** and **b** fails).
 
-**Implement ``IProblem::addRedundant``.**
+**Implement ``IProblem::addRedundant``.** By passing ``ProblemSolverREPTest`` you will get full points for functionality. To get full points for the task your solution also has to be efficient.
 
 ## Grading
 This mandatory assignment will count 15 % towards your final grade. You will recieve a score between 0 and 15.
