@@ -10,7 +10,7 @@ public class ProblemSolver implements IProblem {
 	public <T, E extends Comparable<E>> ArrayList<Edge<T>> mst(WeightedGraph<T, E> g) {
 		// Task 1
 		// TODO implement method
-		return null;
+		return null; 
 	}
 
 	@Override 
