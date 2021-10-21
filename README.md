@@ -33,7 +33,7 @@ In the example above if the edge between the **power plant** and node **f** fail
 
 ## Grading
 This mandatory assignment will count 15 % towards your final grade. You will recieve a score between 0 and 15.
-The following rubric will be used to assess you assignemnt:
+The following rubric will be used to assess you assignment:
 
 ### Code Quality
 Code quality gives 0-3 points.
