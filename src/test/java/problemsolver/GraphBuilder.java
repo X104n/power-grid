@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 import graph.*;
@@ -22,6 +23,7 @@ public class GraphBuilder {
 	 */
 	public WeightedGraph<Integer, Integer> readWeightedGraphFromFile(String file) throws IOException{
 		Scanner sc = new Scanner(new FileReader(new File(file)));
+		sc.useLocale(Locale.US);
 		int n = sc.nextInt(), m = sc.nextInt();
 		WeightedGraph<Integer, Integer> g = new WeightedGraph<>();
 		for (int u = 0; u < n; u++) g.addVertex(u);
@@ -42,6 +44,7 @@ public class GraphBuilder {
 	 */
 	public Graph<Integer> readLCAInstance(String file, ArrayList<Edge<Integer>> queries) throws IOException{
 		Scanner sc = new Scanner(new FileReader(new File(file)));
+		sc.useLocale(Locale.US);
 		int n = sc.nextInt(), q = sc.nextInt();
 		Graph<Integer> g = new Graph<>();
 		for (int u = 0; u < n; u++) g.addVertex(u);
@@ -66,6 +69,7 @@ public class GraphBuilder {
 	 */
 	public Graph<Integer> readTreeFromFile(String file) throws IOException{
 		Scanner sc = new Scanner(new FileReader(new File(file)));
+		sc.useLocale(Locale.US);
 		int n = sc.nextInt();
 		int m = n-1;
 		Graph<Integer> g = new Graph<>();
@@ -90,6 +94,7 @@ public class GraphBuilder {
 	 */
 	public void readGeometricGraphFromFile(String file) throws Exception{
 		Scanner sc = new Scanner(new FileReader(new File(file)));
+		sc.useLocale(Locale.US);
 		int n = sc.nextInt();
 		int[] xs = new int[n], ys = new int[n];
 		for (int i = 0; i < n; i++) {

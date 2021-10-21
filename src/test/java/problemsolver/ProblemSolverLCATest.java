@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,6 +32,7 @@ class ProblemSolverLCATest {
 		g = new GraphBuilder().readLCAInstance("input/LCA" + i + ".in", queries);
 		answers = new ArrayList<Integer>();
 		Scanner sc = new Scanner(new FileReader(new File("input/LCA" + i + ".ans")));
+		sc.useLocale(Locale.US);
 		for (int a = 0; a < queries.size(); a++) answers.add(sc.nextInt());
 	}
 	

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Random;
 
 import graph.*;
@@ -103,9 +104,9 @@ public class Generator {
 		
 		//print problem
 		BufferedWriter bf = new BufferedWriter(new FileWriter(new File(name + ".in")));
-		bf.write(String.format("%d %d\n", n, m));
+		bf.write(String.format(Locale.US, "%d %d\n", n, m));
 		for (Edge<Integer> edge: g.edges()) {
-			bf.write(String.format("%d %d %d\n", edge.a, edge.b, g.getWeight(edge.a, edge.b)));
+			bf.write(String.format(Locale.US, "%d %d %d\n", edge.a, edge.b, g.getWeight(edge.a, edge.b)));
 		}
 		bf.close();
 		
@@ -114,7 +115,7 @@ public class Generator {
 		ArrayList<Edge<Integer>> edges = new ProblemSolver().mst(g);
 		int sum = 0;
 		for (Edge<Integer> edge: edges) sum += g.getWeight(edge.a, edge.b);
-		bf.write(String.format("%d\n", sum));
+		bf.write(String.format(Locale.US, "%d\n", sum));
 		bf.close();
 	}
 	
@@ -134,16 +135,16 @@ public class Generator {
 		
 		//print problem
 		BufferedWriter bf = new BufferedWriter(new FileWriter(new File(name + ".in")));
-		bf.write(String.format("%d %d\n", n, q));
+		bf.write(String.format(Locale.US, "%d %d\n", n, q));
 		for (Edge<Integer> edge: g.edges()) {
-			bf.write(String.format("%d %d\n", edge.a, edge.b));
+			bf.write(String.format(Locale.US, "%d %d\n", edge.a, edge.b));
 		}
-		for (Edge<Integer> edge: queries) bf.write(String.format("%d %d\n", edge.a, edge.b));
+		for (Edge<Integer> edge: queries) bf.write(String.format(Locale.US, "%d %d\n", edge.a, edge.b));
 		bf.close();
 		
 		//print answer
 		bf =  new BufferedWriter(new FileWriter(new File(name + ".ans")));
-		for (Edge<Integer> edge: queries) bf.write(String.format("%d\n", new ProblemSolver().lca(g, 0, edge.a, edge.b)));
+		for (Edge<Integer> edge: queries) bf.write(String.format(Locale.US, "%d\n", new ProblemSolver().lca(g, 0, edge.a, edge.b)));
 		bf.close();
 	}
 	
@@ -152,16 +153,16 @@ public class Generator {
 		
 		//print problem
 		BufferedWriter bf = new BufferedWriter(new FileWriter(new File(name + ".in")));
-		bf.write(String.format("%d\n", n));
+		bf.write(String.format(Locale.US, "%d\n", n));
 		for (Edge<Integer> edge: g.edges()) {
-			bf.write(String.format("%d %d\n", edge.a, edge.b));
+			bf.write(String.format(Locale.US, "%d %d\n", edge.a, edge.b));
 		}
 		bf.close();
 		
 		//print ans
 		bf = new BufferedWriter(new FileWriter(new File(name + ".ans")));
 		Edge<Integer> ans = new ProblemSolver().addRedundant(g,0);
-		bf.write(String.format("%d %d\n", ans.a, ans.b));
+		bf.write(String.format(Locale.US, "%d %d\n", ans.a, ans.b));
 		bf.close();
 	}
 }

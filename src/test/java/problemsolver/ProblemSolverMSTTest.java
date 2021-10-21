@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Queue;
 import java.util.Scanner;
 
@@ -24,14 +25,14 @@ class ProblemSolverMSTTest {
 	
 	@BeforeEach
 	void getProblemSolver() {
-		// Enter your implementation here
 		problemSolver = new ProblemSolver();
-		//problemSolver = new ProblemSolverMaVa();
 	}
 	
 	private void generateTestCase(int i) throws IOException{
 		g = new GraphBuilder().readWeightedGraphFromFile("input/MST" + i + ".in");
-		mstWeight = new Scanner(new FileReader(new File("input/MST" + i + ".ans"))).nextInt();
+		Scanner sc = new Scanner(new FileReader(new File("input/MST" + i + ".ans")));
+		sc.useLocale(Locale.US);
+		mstWeight = sc.nextInt();
 	}
 	
 	private boolean isConnected(ArrayList<Edge<Integer>> edges) {
