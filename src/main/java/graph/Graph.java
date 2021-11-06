@@ -70,10 +70,10 @@ public class Graph<V> implements IGraph<V> {
 	 * Finds all edges which has one endpoint equal to v
 	 * @return all edges found
 	 */
-	public Iterable<Edge<V>> adjacentEdges(V v) {
-		ArrayList<Edge<V>> edges = new ArrayList<Edge<V>>();
-		for(V neighbour : getNeighbours(v)) {
-			edges.add(new Edge<V>(v,neighbour));
+	public Iterable<Edge<V>> adjacentEdges(V v) { //O(degree)
+		ArrayList<Edge<V>> edges = new ArrayList<Edge<V>>(); //O(1)
+		for(V neighbour : getNeighbours(v)) { //Degree iterations
+			edges.add(new Edge<V>(v,neighbour)); //O(1)
 		}
 		return edges;
 	}
@@ -84,8 +84,8 @@ public class Graph<V> implements IGraph<V> {
 	}
 	
 	private HashSet<V> getNeighbours(V v){
-		checkVertex(v);
-		return adjacencyList.get(v);
+		checkVertex(v); //O(1)
+		return adjacencyList.get(v); //O(1)
 	}
 	
 	/**

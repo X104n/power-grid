@@ -14,7 +14,7 @@ public class Edge<V> {
 	public final V a;
 	public final V b;
 	
-	public Edge(V a, V b){
+	public Edge(V a, V b){ //O(1)
 		if(a.equals(b))
 			throw new IllegalArgumentException("Loops are not allowed");
 		if(a==null || b==null)
