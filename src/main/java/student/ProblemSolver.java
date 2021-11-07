@@ -1,7 +1,6 @@
 package student;
 
 import java.util.*;
-import java.util.function.DoubleToIntFunction;
 
 import graph.*;
 
@@ -177,13 +176,13 @@ public class ProblemSolver implements IProblem {
         eulerTree(g, weight, distance, visited, leaves, root, 0); //O(n)
 
         PriorityQueue<T> sortedNeighbours = getChildren(g, root, weight); //O(1)
-        T path1 = bestNode(g, root, sortedNeighbours.poll(), weight, 0); //O(n log n)
-        T path2 = bestNode(g, root, sortedNeighbours.poll(), weight, weight.get(sortedNeighbours.poll()));//O(n log n)
+        T path1 = selectNode(g, root, sortedNeighbours.poll(), weight, 0); //O(n log n)
+        T path2 = selectNode(g, root, sortedNeighbours.poll(), weight, weight.get(sortedNeighbours.poll()));//O(n log n)
 
         return new Edge<T>(path1, path2); //O(n)
     }
 
-    //O(degree log n)
+    //O(n log n)
     private <T> PriorityQueue<T> getChildren(Graph<T> g, T parent, HashMap<T, Integer> weight) {
         PriorityQueue<T> sortedChildren = new PriorityQueue<>((o1, o2) -> -Integer.compare(weight.get(o1), weight.get(o2))); //O(log n)
 
@@ -194,8 +193,8 @@ public class ProblemSolver implements IProblem {
         return sortedChildren;
     }
 
-    //Runtime: O(n log n)
-    private <T> T bestNode(Graph<T> g, T root, T neighbourChildren, HashMap<T, Integer> weight, Integer neighbourSize) {
+    //O(n log n)
+    private <T> T selectNode(Graph<T> g, T root, T neighbourChildren, HashMap<T, Integer> weight, Integer neighbourSize) {
         if (neighbourChildren == null) //O(1)
             return root;
 

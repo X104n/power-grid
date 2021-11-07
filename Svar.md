@@ -43,12 +43,12 @@ For each method of the different strategies give a runtime analysis in Big-O not
 * ``other(Edge<T> e, T node)``: O(1)
   * *Just uses equals*
 
-* ``addRedundant(Graph<T> g, T root)``: O(?)
-    * *Insert description of why the method has the given runtime*
+* ``addRedundant(Graph<T> g, T root)``: O(n log n)
+    * *what takes time here is to select the node*
 
-* ``getChildren(Graph<T> g, T parent, HashMap<T, Integer> weight)``: O(?)
+* ``getChildren(Graph<T> g, T parent, HashMap<T, Integer> weight)``: O(n log n)
   * *degree log n because the value of the input can change*
 
-* ``bestNode(Graph<T> g, T root, T neighbourChildren, HashMap<T, Integer> size, Integer neighbourSize)``: O(?)
-  * *Insert description of why the method has the given runtime*
+* ``bestNode(Graph<T> g, T root, T neighbourChildren, HashMap<T, Integer> size, Integer neighbourSize)``: O(n log n)
+  * *What takes time here is the get children function*
 
