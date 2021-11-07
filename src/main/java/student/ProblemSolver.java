@@ -218,7 +218,7 @@ public class ProblemSolver implements IProblem {
 
         // After this we have a list witch contains all the leaves of the tree. With this we path from all the leaves and make a list for each of them.
 
-        //We need a hashmap to store all of the values
+        //We need a hashmap to store all the values
         LinkedList<LinkedList<T>> pathing = new LinkedList<>();
 
         for(T leaf : leaves){
@@ -228,19 +228,48 @@ public class ProblemSolver implements IProblem {
         //Now that we have a list of nodes we can start in the beginning of the list and use the weightNode class to add weight to all of the nodes
 
         HashMap<T, Integer> weight = new HashMap<>();
+        HashMap<T, Integer> allWeight = new HashMap<>();
 
+        int tempCounter = 0;
+
+        //For each of the lists we have a list
         for(LinkedList<T> list : pathing){
-            System.out.println(list);
+
+            //And we need to remember the last node so we save this in here
             T lastNode = list.getFirst();
+
+            //Now for each of the nodes in the list
             for(T someNode : list){
-                if(lastNode.equals(someNode)){
+
+                //If the node equals the first node of the list its a leaf and we set its value to 0
+                if(someNode.equals(list.getFirst())){
+                    tempCounter++;
                     weight.put(someNode, 0);
+
+                    continue;
+                }else {
+
+                    //If not update the value of the node with the value of the previous node + 1
+                    if(weight.get(someNode) != null){
+                        int temp = weight.get(someNode);
+                        weight.put(someNode, (temp + weight.get(lastNode) + 1));
+                    }
+                    else{
+                        weight.put(someNode, (weight.get(lastNode) + 1));
+                    }
+
+
+                    //Then we say that the current node is now the last node
+                    lastNode = someNode;
                 }
-                weight.put(someNode, weight.get(lastNode)+1);
-                System.out.println(weight.get(lastNode));
-                lastNode = someNode;
+
+
             }
         }
+
+        System.out.println(leaves.size());
+        System.out.println(tempCounter);
+        System.out.println(weight);
 
         //Then using the path lists again we add upp all of the weight in that path and find the two biggest values, this is the edge we return
 
@@ -250,12 +279,21 @@ public class ProblemSolver implements IProblem {
         T firstNode = root;
         T secondNode = root;
 
+        //For each pathing list
         for(LinkedList<T> list : pathing){
+
+            //Make a counter
             int counter = 0;
+
+            //Then add upp all of the values of the weight of the nodes in that path
             for(T someNode : list){
+
+                //Get the weight for each node and add them up
                 int number = weight.get(someNode);
                 counter += number;
             }
+
+            //now if the totalWeight is bigger than any of these then we swap em out
             if(counter > first){
                 first = counter;
                 firstNode = list.getFirst();

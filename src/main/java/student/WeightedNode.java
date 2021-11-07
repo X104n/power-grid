@@ -5,31 +5,18 @@ import java.util.Objects;
 
 public class WeightedNode<T> {
 
-    private HashMap<T, Integer> weight;
+    private Integer weight;
+    private T node;
 
-
-    public HashMap<T, Integer> getWeight() {
-        return weight;
+    public WeightedNode(T node){
+        this.node = node;
     }
 
-    public void newWeight(T t, Integer i){
-        weight.put(t, i);
+    public  void setWeight(Integer i){
+        this.weight = i;
+    }
+    public Integer getWeight() {
+        return this.weight;
     }
 
-    public void addWeight(T t, Integer i){
-        weight.put(t, weight.get(t) + i);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        WeightedNode<?> that = (WeightedNode<?>) o;
-        return Objects.equals(weight, that.weight);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(weight);
-    }
 }
