@@ -165,147 +165,91 @@ public class ProblemSolver implements IProblem {
     @Override
     public <T> Edge<T> addRedundant(Graph<T> g, T root) {
         // Task 3
-        // TODO implement method'
-
-        //Our leaf list
-        ArrayList<T> leaves = new ArrayList<>();
-
-        //A list to see witch nodes we have been on
-        HashSet<T> found = new HashSet<>();
-
-        //A list that holds the current path
-        LinkedList<T> path = new LinkedList<>();
-
-        //A list that keeps track where to search next
-        LinkedList<Edge<T>> toSearch = new LinkedList<>();
-
-        //Forgot level!!!!!!!!!!!!
-        HashMap<T, Integer> level = new HashMap<>(); //O(1)
-        level.put(root, 0); //O(1)
-
-        //First we add the root to pathing
-        path.add(root);
-        //Here we update the toSearch and found list
-        update(g, found, toSearch, root);
-
-        //So while the toSearch list is not empty we keep on searching
-        while(!toSearch.isEmpty()){
-
-            //Begin with the edge that was last added to the searching list
-            Edge<T> e = toSearch.removeLast();
-
-            //Then we find the node that we are currently standing on
-            T currentNode = getFoundNode(e, found);
-
-            //Then the node we are looking at
-            T newNode = otherNode(e, found);
-
-            //If the node we have found the node we are looking at we skip and move forward
-            if(found.contains(newNode)){
-                continue;
-            }
-
-            //If it is a new node we check to see if it is a leaf the the degree method witch takes O(1) then we can add this to a list
-            if(g.degree(newNode) == 1){
-                leaves.add(newNode);
-            }
-
-            //And at the end we update the toSearch and continue the loop
-            update(g,found,toSearch,newNode);
-            //Forgot level!!!!
-            level.put(newNode, level.get(currentNode) + 1); //O(1)
-        }
-
-        // After this we have a list witch contains all the leaves of the tree. With this we path from all the leaves and make a list for each of them.
-
-        //We need a hashmap to store all the values
-        LinkedList<LinkedList<T>> pathing = new LinkedList<>();
-
-        for(T leaf : leaves){
-            pathing.add(pathing(g,level,root,leaf));
-        }
-
-        //Now that we have a list of nodes we can start in the beginning of the list and use the weightNode class to add weight to all of the nodes
+        // TODO implement method
 
         HashMap<T, Integer> weight = new HashMap<>();
-        HashMap<T, Integer> allWeight = new HashMap<>();
+        HashMap<T, Integer> level = new HashMap<>();
+        HashSet<T> visited = new HashSet<>();
+        LinkedList<T> leaves = new LinkedList<>();
 
-        int tempCounter = 0;
+        LinkedList<LinkedList<T>> pathing = new LinkedList<>();
 
-        //For each of the lists we have a list
-        for(LinkedList<T> list : pathing){
+        eulerTree(g, weight, level, visited, leaves, root, 0);
 
-            //And we need to remember the last node so we save this in here
-            T lastNode = list.getFirst();
+        HashMap<T, Integer> temp = new HashMap<>();
 
-            //Now for each of the nodes in the list
-            for(T someNode : list){
-
-                //If the node equals the first node of the list its a leaf and we set its value to 0
-                if(someNode.equals(list.getFirst())){
-                    tempCounter++;
-                    weight.put(someNode, 0);
-
-                    continue;
-                }else {
-
-                    //If not update the value of the node with the value of the previous node + 1
-                    if(weight.get(someNode) != null){
-                        int temp = weight.get(someNode);
-                        weight.put(someNode, (temp + weight.get(lastNode) + 1));
-                    }
-                    else{
-                        weight.put(someNode, (weight.get(lastNode) + 1));
-                    }
-
-
-                    //Then we say that the current node is now the last node
-                    lastNode = someNode;
-                }
-
-
-            }
+        for(T rootChild : g.neighbours(root)){
+            temp.put(rootChild, 0);
         }
 
-        System.out.println(leaves.size());
-        System.out.println(tempCounter);
-        System.out.println(weight);
-
-        //Then using the path lists again we add upp all of the weight in that path and find the two biggest values, this is the edge we return
-
-
-        int first = 0;
-        int second = 0;
-        T firstNode = root;
-        T secondNode = root;
-
-        //For each pathing list
-        for(LinkedList<T> list : pathing){
-
-            //Make a counter
-            int counter = 0;
-
-            //Then add upp all of the values of the weight of the nodes in that path
-            for(T someNode : list){
-
-                //Get the weight for each node and add them up
-                int number = weight.get(someNode);
-                counter += number;
-            }
-
-            //now if the totalWeight is bigger than any of these then we swap em out
-            if(counter > first){
-                first = counter;
-                firstNode = list.getFirst();
-            }
-            else if(counter > second){
-                second = counter;
-                secondNode = list.getFirst();
-            }
-
+        for(T leaf : leaves){
+            LinkedList<T> path = pathing(g, level, root, leaf);
+            path.removeLast();
+            pathing.add(path);
         }
 
-        return new Edge(firstNode, secondNode);
+
+        T MVP = findMVP();
+        T secondMVP = findMVP();
+
+        return new Edge(MVP, secondMVP);
+
+
+    }
+
+    public <T> T findMVP(){
+
+        return null;
+    }
+
+    /**
+     *         T biggestPath = root;
+     *         T biggestReturn = root;
+     *         int biggestPathCounter = 0;
+     *
+     *         for(LinkedList<T> list : pathing){
+     *             int weightCounter = 0;
+     *             for(T node : list){
+     *                 weightCounter += weight.get(node);
+     *             }
+     *             if(weightCounter > biggestPathCounter){
+     *                 biggestPath = list.getLast();
+     *                 biggestPathCounter = weightCounter;
+     *                 biggestReturn = list.getFirst();
+     *             }
+     *         }
+     *
+     *         T secondBiggest;
+     *         T secondReturn = root;
+     *         int secondBiggestPathCounter = 0;
+     *
+     *         for(LinkedList<T> list : pathing){
+     *             int weightCounter = 0;
+     *             for(T node : list){
+     *                 weightCounter += weight.get(node);
+     *             }
+     *             if(weightCounter > secondBiggestPathCounter && !list.getLast().equals(biggestPath)){
+     *                 secondBiggest = list.getLast();
+     *                 secondBiggestPathCounter = weightCounter;
+     *                 secondReturn = list.getFirst();
+     *             }
+     *         }
+*/
+    public <T> Integer eulerTree (Graph<T> g, HashMap<T, Integer> weight, HashMap<T, Integer> distance,HashSet<T> visited, LinkedList<T> leaves, T node, Integer depth){
+        visited.add(node);
+        int childNode = 1;
+        for(T n : g.neighbours(node)){
+            if(g.degree(n) == 1){
+                leaves.add(n);
+            }
+            if(visited.contains(n)){
+                continue;
+            }
+            childNode += eulerTree(g, weight, distance, visited, leaves, n, depth);
+        }
+        weight.put(node, childNode);
+        distance.put(node, depth);
+        return childNode;
     }
 
     private <T> HashMap<T, Integer> DFSMapping(Graph<T> g, T root) {
