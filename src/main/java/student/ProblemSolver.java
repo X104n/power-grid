@@ -167,39 +167,60 @@ public class ProblemSolver implements IProblem {
         // Task 3
         // TODO implement method
 
-        HashMap<T, Integer> weight = new HashMap<>();
-        HashMap<T, Integer> level = new HashMap<>();
-        HashSet<T> visited = new HashSet<>();
-        LinkedList<T> leaves = new LinkedList<>();
-
-        LinkedList<LinkedList<T>> pathing = new LinkedList<>();
-
-        eulerTree(g, weight, level, visited, leaves, root, 0);
-
-        HashMap<T, Integer> temp = new HashMap<>();
+//        HashMap<T, Integer> weight = new HashMap<>();
+//        HashMap<T, Integer> level = new HashMap<>();
+//        HashSet<T> visited = new HashSet<>();
+//        LinkedList<T> leaves = new LinkedList<>();
+//
+//        LinkedList<LinkedList<T>> pathing = new LinkedList<>();
+//
+//        eulerTree(g, weight, level, visited, leaves, root, 0);
+//
+//        HashMap<T, Integer> temp = new HashMap<>();
+//
+        LinkedList<T> heaviestPath = new LinkedList<>();
 
         for(T rootChild : g.neighbours(root)){
-            temp.put(rootChild, 0);
+            heaviestPath.add(findMVP(g, rootChild, root));
         }
 
-        for(T leaf : leaves){
-            LinkedList<T> path = pathing(g, level, root, leaf);
-            path.removeLast();
-            pathing.add(path);
-        }
-
-
-        T MVP = findMVP();
-        T secondMVP = findMVP();
+        T MVP = heaviestPath.removeFirst();
+        T secondMVP = heaviestPath.removeFirst();
 
         return new Edge(MVP, secondMVP);
 
 
     }
 
-    public <T> T findMVP(){
+    public <T> T findMVP(Graph<T> g,T root, T skip){
+        HashMap<T, Integer> weight = new HashMap<>();
+        HashMap<T, Integer> level = new HashMap<>();
+        HashSet<T> visited = new HashSet<>();
+        LinkedList<T> leaves = new LinkedList<>();
 
-        return null;
+        eulerTree(g, weight, level, visited, leaves, root, 0);
+
+        LinkedList<LinkedList<T>> pathing = new LinkedList<>();
+
+        for(T leaf : leaves){
+            LinkedList<T> path = pathing(g, level, root, leaf);
+            pathing.add(path);
+        }
+
+        T heaviestLeaf = root;
+
+        for(LinkedList<T> list : pathing){
+            int weightCounter = 0;
+            for(T node : list){
+                weightCounter += weight.get(node);
+            }
+            weight.put(list.getFirst(), weightCounter);
+            if(weightCounter > weight.get(heaviestLeaf)){
+                heaviestLeaf = list.getFirst();
+            }
+        }
+
+        return heaviestLeaf;
     }
 
     /**
@@ -235,6 +256,7 @@ public class ProblemSolver implements IProblem {
      *             }
      *         }
 */
+
     public <T> Integer eulerTree (Graph<T> g, HashMap<T, Integer> weight, HashMap<T, Integer> distance,HashSet<T> visited, LinkedList<T> leaves, T node, Integer depth){
         visited.add(node);
         int childNode = 1;
