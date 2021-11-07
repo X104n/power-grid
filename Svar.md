@@ -9,7 +9,7 @@ For this task I used prims algorithm to make a minimum spanning tree. And to mak
 For this task I used the BSF algorithm to map out the graph with the level/distance from the root that was given. With this information I made a pathing algorithm that found its way from the given node up to the root using the level/distance we found using BSF. And to find the lca I compared the two paths to one another and found the lowest node that was shared it both of the node's path.
 
 ## Task 3 - addRedundant
-*Enter description*
+*In this task we use the euler algorithm to map out and find the weight of each of the nodes. This could also be used in task to but its 2 minutes to the deadline so theres not much more to be done, for the rest of the task we sort the children of the parents and then use the select node to calculate the distanse and the wait of all the children from the children of the root. Then we find the most optimal node to drav the power line.*
 
 
 # Runtime Analysis
