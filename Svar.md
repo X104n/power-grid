@@ -46,3 +46,9 @@ For each method of the different strategies give a runtime analysis in Big-O not
 * ``addRedundant(Graph<T> g, T root)``: O(?)
     * *Insert description of why the method has the given runtime*
 
+* ``getChildren(Graph<T> g, T parent, HashMap<T, Integer> weight)``: O(?)
+  * *degree log n because the value of the input can change*
+
+* ``bestNode(Graph<T> g, T root, T neighbourChildren, HashMap<T, Integer> size, Integer neighbourSize)``: O(?)
+  * *Insert description of why the method has the given runtime*
+
