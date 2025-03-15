@@ -1,5 +1,16 @@
 # Power Grid
-## Semester Assignment 2
+
+This is the second assignment in the course INF102. I originally delivered this project to GitLab and decided to transfer the repository to GitHub 
+to have my work in one place.
+
+In this commit I intend to archive the project since I have no intention of working on it in the future.
+
+### CoPilot:
+The assignment is mandatory and must be completed individually. You will be given a grade between 0 and 15. The assignment will count 15% towards your final grade.
+
+
+
+## The Assignment
 
 ### Scenario
 A power company is building a power grid in the town of Flåklypa.
